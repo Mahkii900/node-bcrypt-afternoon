@@ -5,6 +5,7 @@ const masssive = require('massive')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const app = express()
 const authCtrl = require('./controllers/authController')
+const treasCtrl = require('./controllers/treasureController')
 
 //TOP LEVEL MIDDLEWARE
 app.use(express.json())
@@ -15,9 +16,10 @@ app.use(session({
 }))
 
 //ENDPOINTS
-app.post('/auth/register', authCtrl.register)
-app.post('/auth/login', authCtrl.login)
-app.get('/auth/logout', authCtrl.logout)
+app.post('/auth/register', authCtrl.register) //register user
+app.post('/auth/login', authCtrl.login) //login user
+app.get('/auth/logout', authCtrl.logout) //logout user
+app.get('/api/treasure/dragon', treasCtrl.dragonTreasure) //gets dragon treasure
 
 //DATABASE CONNECTION
 masssive(CONNECTION_STRING).then(db => {
