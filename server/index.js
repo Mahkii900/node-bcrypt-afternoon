@@ -17,6 +17,7 @@ app.use(session({
 //ENDPOINTS
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
+app.get('/auth/logout', authCtrl.logout)
 
 //DATABASE CONNECTION
 masssive(CONNECTION_STRING).then(db => {
