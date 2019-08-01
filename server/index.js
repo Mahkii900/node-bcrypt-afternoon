@@ -22,6 +22,8 @@ app.post('/auth/login', authCtrl.login) //login user
 app.get('/auth/logout', authCtrl.logout) //logout user
 app.get('/api/treasure/dragon', treasCtrl.dragonTreasure) //gets dragon treasure
 app.get('/api/treasure/user', auth.usersOnly, treasCtrl.getUserTreasure) //gets user treasure
+app.post('/api/treasure/user', auth.usersOnly, treasCtrl.addUserTreasure) //adds user treasure
+
 
 //DATABASE CONNECTION
 masssive(CONNECTION_STRING).then(db => {
