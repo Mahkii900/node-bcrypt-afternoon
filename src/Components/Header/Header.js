@@ -29,7 +29,21 @@ export default class Header extends Component {
   }
 
   login() {
-    // axios POST to /auth/login here
+    let username = this.state.username
+    let password = this.state.password
+    axios.post('/auth/login', {
+      username: username,
+      password: password
+    }).then(user => {
+      this.setState({
+        username: '',
+        password: ''
+      })
+      this.props.updateUser(user.data)
+    })
+    .catch(err => {
+      alert(err.response.request.response)
+    })
   }
 
   register() {
